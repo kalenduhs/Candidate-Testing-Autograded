@@ -43,11 +43,20 @@ function gradeQuiz(candidateAnswers) {
   } */
 
   for (let i = 0; i < 5; i++){
-    console.log(`The question was ${questions[i]}. Your response was ${candidateAnswers[i]}. `)
+    console.log(`${i + 1}) ${questions[i]} \nYour answer: ${candidateAnswers[i]} \nCorrect answer: ${correctAnswers[i]}`)
   }
 
+  let numberOfCorrectAnswers = 0;
+  let correctAnswersToLowerCase = correctAnswers.join(", ").toLowerCase().split(", ");
+  let candidateAnswersToLowerCase = candidateAnswers.join(",").toLowerCase().split(",");
+  for (let i = 0; i < 5; i++) {
+    
+    if (correctAnswersToLowerCase[i] === candidateAnswersToLowerCase[i]) {
+      numberOfCorrectAnswers ++;
+    }
+  }
 
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
+  let grade = numberOfCorrectAnswers/5 * 100;  //TODO 3.2 use this variable to calculate the candidates score.
 
 
   return grade;
