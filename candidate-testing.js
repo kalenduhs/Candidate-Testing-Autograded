@@ -42,22 +42,29 @@ function gradeQuiz(candidateAnswers) {
     console.log("That is a wrong answer.");
   } */
 
-  for (let i = 0; i < 5; i++){
+  console.log(`Candidate Name: ${candidateName}`);
+  for (let i = 0; i < questions.length; i++){
     console.log(`${i + 1}) ${questions[i]} \nYour answer: ${candidateAnswers[i]} \nCorrect answer: ${correctAnswers[i]}`)
   }
 
   let numberOfCorrectAnswers = 0;
   let correctAnswersToLowerCase = correctAnswers.join(", ").toLowerCase().split(", ");
   let candidateAnswersToLowerCase = candidateAnswers.join(",").toLowerCase().split(",");
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < questions.length; i++) {
     
     if (correctAnswersToLowerCase[i] === candidateAnswersToLowerCase[i]) {
       numberOfCorrectAnswers ++;
     }
   }
 
-  let grade = numberOfCorrectAnswers/5 * 100;  //TODO 3.2 use this variable to calculate the candidates score.
+  let grade = numberOfCorrectAnswers/questions.length * 100;  //TODO 3.2 use this variable to calculate the candidates score.
 
+  console.log(`>>> Overall Grade: ${grade}% (${numberOfCorrectAnswers} of 5 responses correct) <<<`)
+  if (grade < 80) {
+    console.log(`>>> Status: FAILED <<<`);
+  } else {
+    console.log(`>>> Status: PASSED <<<`);
+  }
 
   return grade;
 }
